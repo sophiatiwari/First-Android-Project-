@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    tools:context=".Main2Activity">
+    tools:context=".NoteCreate">
 
     <Button
         android:id="@+id/image"
@@ -13,9 +13,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/alarm"
         android:layout_marginStart="97dp"
-        android:text="Button"
-        android:onClick="addimage"
-        tools:text="image" />
+        android:text="image"
+        android:onClick="addimage"/>
 
     <Button
         android:id="@+id/alarm"
@@ -24,9 +23,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/close"
         android:layout_marginEnd="98dp"
-        android:text="Button"
-        android:onClick="setalarm"
-        tools:text="alarm" />
+        android:text="alarm"
+        android:onClick="setalarm"/>
 
     <Button
         android:id="@+id/close"
@@ -35,9 +33,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="139dp"
-        android:text="Button"
-        android:onClick="close"
-        tools:text="close" />
+        android:text="close"
+        android:onClick="close"/>
 
 
     <Button
@@ -46,9 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/close"
-        android:text="Button"
-        android:onClick="save"
-        tools:text="save" />
+        android:text="save"
+        android:onClick="save"/>
 
     <EditText
         android:id="@+id/note"

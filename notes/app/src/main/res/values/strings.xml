@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">notes</string>
+    <string-array name="titles">
+        <item>Facebook</item>
+        <item>Instagram</item>
+    </string-array>
+
+    <string-array name="descriptions">
+        <item>ic_launcher_foreground</item>
+        <item>ic_launcher_background</item>
+    </string-array>
 </resources>

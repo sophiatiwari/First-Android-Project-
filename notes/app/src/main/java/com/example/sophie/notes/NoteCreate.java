@@ -1,19 +1,18 @@
 package com.example.sophie.notes;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class Main2Activity extends AppCompatActivity {
+public class NoteCreate extends AppCompatActivity {
 
     private static final int RC_PHOTO_PICKER = 1; //request code for photo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_notecreate);
     }
 
     public void close(View view) {
@@ -21,11 +20,11 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     public void save(View view) {
-        finish();    //back to MainActivity
+        finish();    //back to NoteList
     }
 
     public void setalarm(View view) {
-        Intent i = new Intent(getApplicationContext(), Main3Activity.class);
+        Intent i = new Intent(getApplicationContext(), SetAlarm.class);
         startActivity(i);
         finish();
     }
