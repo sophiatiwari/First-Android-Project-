@@ -42,14 +42,18 @@ class MyAdapter extends ArrayAdapter<Model> {
         String image = list.get(position).getImgs();
         String not = list.get(position).getText();
         String ala = list.get(position).getAlarm();
-        Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
-        Glide.with(getContext())
-                .load(image)
-                .placeholder(R.drawable.ic_launcher_background)
-                .into(images);
+        //Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
+        if (image.equals("") || image.equals(null))
+            images.setVisibility(View.GONE);
+        else {
+            images.setVisibility(View.VISIBLE);
+            Glide.with(getContext())
+                    .load(image)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .into(images);
+        }
         myTitle.setText(not);
         myDescription.setText(ala);
         return row;
-
     }
 }
