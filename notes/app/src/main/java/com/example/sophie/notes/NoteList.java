@@ -2,7 +2,7 @@ package com.example.sophie.notes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,57 +14,86 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class NoteList extends AppCompatActivity {
     ListView list;
-    String [] titles;
-    String [] description;
-    int [] imgs={R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
+   //String [] titles;
+   //String [] description;
+   //int [] imgs={R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notelist);
-        Resources res = getResources();
 
-        titles=res.getStringArray(R.array.titles);
-        description=res.getStringArray(R.array.descriptions);
 
+    }
+
+    /**
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are <em>not</em> resumed.  This means
+     * that in some cases the previous state may still be saved, not allowing
+     * fragment transactions that modify the state.  To correctly interact
+     * with fragments in their proper state, you should instead override
+     * {@link #onResumeFragments()}.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences=getApplicationContext().getSharedPreferences("notes", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+        ArrayList<String> text;
+        ArrayList<String> imgs;
+        ArrayList<String> alarm;
+
+        String json = preferences.getString("note", null);
+        if(json==null)
+            text=new ArrayList<>();
+        else
+            text= gson.fromJson(json, type);
+
+        json = preferences.getString("image", null);
+        if(json==null)
+            imgs=new ArrayList<>();
+        else
+            imgs=gson.fromJson(json,type);
+
+        json = preferences.getString("alarm", null);
+        if(json==null)
+            alarm=new ArrayList<>();
+        else
+            alarm=gson.fromJson(json,type);
+
+        ArrayList<Model> listNote = new ArrayList<>();
+
+        for(int i=0;i<text.size();i++){
+            listNote.add(i,new Model(text.get(i),imgs.get(i),alarm.get(i)));
+        }
         list=(ListView)findViewById(R.id.list1);
-        MyAdapter adapter =  new MyAdapter(this,titles,imgs,description);
+
+       // Model model = new Model(text,imgs,alarm);
+
+        MyAdapter adapter =  new MyAdapter(this,R.layout.row,listNote);
         list.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
-    class MyAdapter extends ArrayAdapter<String> {
-        Context context;
-        int[] imgs;
-        String myTiltles[];
-        String myDescription[];
 
-        MyAdapter(Context c, String[] titles, int[] imgs, String[] description) {
-            super(c, R.layout.row, R.id.text1, titles);
-            this.context = c;
-            this.imgs = imgs;
-            this.myDescription = description;
-            this.myTiltles = titles;
 
-        }
 
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row, parent, false);
-            ImageView images = (ImageView) row.findViewById(R.id.icon);
-            TextView myTitle = (TextView) row.findViewById(R.id.text1);
-            TextView myDescription = (TextView) row.findViewById(R.id.text2);
-            images.setImageResource(imgs[position]);
-            myTitle.setText(titles[position]);
-            myDescription.setText(description[position]);
-            return row;
-
-        }
-
-    }
     public void add(View view) {
         Intent i = new Intent(getApplicationContext(), NoteCreate.class);
         startActivity(i);
