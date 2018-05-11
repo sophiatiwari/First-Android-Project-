@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class NoteList extends AppCompatActivity {
+public class NoteList extends AppCompatActivity implements deletion{
     ListView list;
    //String [] titles;
    //String [] description;
    //int [] imgs={R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
+   ArrayList<String> text;
+    ArrayList<String> imgs;
+    ArrayList<String> alarm;
+
+    Gson gson = new Gson();
+    Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +63,7 @@ public class NoteList extends AppCompatActivity {
         super.onResume();
         SharedPreferences preferences=getApplicationContext().getSharedPreferences("notes", MODE_PRIVATE);
 
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<String>>() {}.getType();
 
-        ArrayList<String> text;
-        ArrayList<String> imgs;
-        ArrayList<String> alarm;
 
         String json = preferences.getString("note", null);
         if(json==null)
@@ -83,13 +88,14 @@ public class NoteList extends AppCompatActivity {
         for(int i=0;i<text.size();i++){
             listNote.add(i,new Model(text.get(i),imgs.get(i),alarm.get(i)));
         }
-        list=(ListView)findViewById(R.id.list1);
 
        // Model model = new Model(text,imgs,alarm);
 
-        MyAdapter adapter =  new MyAdapter(this,R.layout.row,listNote);
-        list.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        RecyclerView myrv = findViewById(R.id.list1);
+        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(this,listNote);
+        myrv.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        myrv.setAdapter(myadapter);
+
     }
 
 
@@ -97,5 +103,19 @@ public class NoteList extends AppCompatActivity {
     public void add(View view) {
         Intent i = new Intent(getApplicationContext(), NoteCreate.class);
         startActivity(i);
+    }
+
+    @Override
+    public void delete(int p) {
+        text.remove(p);
+        imgs.remove(p);
+        alarm.remove(p);
+        SharedPreferences preferences=getApplicationContext().getSharedPreferences("notes", MODE_PRIVATE);
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.putString("note", gson.toJson(text));
+        editor.putString("image", gson.toJson(imgs));
+        editor.putString("alarm", gson.toJson(alarm));
+        editor.apply();
+        onResume();
     }
 }

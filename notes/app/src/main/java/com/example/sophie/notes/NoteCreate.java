@@ -27,11 +27,39 @@ public class NoteCreate extends AppCompatActivity {
 
     private static final int RC_PHOTO_PICKER = 1; //request code for photo
     String p="";
+    int pos=-1;
+
+
+
+    Gson gson = new Gson();
+    Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+    ArrayList<String> text;
+    ArrayList<String> imgs;
+    ArrayList<String> alarm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notecreate);
+        pos=getIntent().getIntExtra("p",-1);
+        if(pos>-1){
+            SharedPreferences preferences=getApplicationContext().getSharedPreferences("notes", MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferences.edit();
+            text= gson.fromJson(preferences.getString("note", null), type);
+            imgs=gson.fromJson(preferences.getString("image", null), type);
+            EditText editText =findViewById(R.id.note);
+            ImageView imageView = findViewById(R.id.img);
+            editText.setText(text.get(pos));
+            if(!imgs.get(pos).equals("")) {
+                p=imgs.get(pos);
+                Glide.with(NoteCreate.this)
+                        .load(p)
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .into(imageView);
+            }
+        }
     }
 
     public void close(View view) {
@@ -42,48 +70,52 @@ public class NoteCreate extends AppCompatActivity {
         SharedPreferences preferences=getApplicationContext().getSharedPreferences("notes", MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
 
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-
-        ArrayList<String> text;
-        ArrayList<String> imgs;
-        ArrayList<String> alarm;
-
-        String json = preferences.getString("note", null);
-        if(json==null)
-            text=new ArrayList<>();
-        else
-            text= gson.fromJson(json, type);
-
-        json = preferences.getString("image", null);
-        if(json==null)
-            imgs=new ArrayList<>();
-        else
-            imgs=gson.fromJson(json,type);
-
-        json = preferences.getString("alarm", null);
-        if(json==null)
-            alarm=new ArrayList<>();
-        else
-            alarm=gson.fromJson(json,type);
-
-
-        EditText editText =findViewById(R.id.note);
-        String s = editText.getText().toString().trim();
-        if(s.equals("") && p.equals(""))
-            Toast.makeText(this, "No text and Image", Toast.LENGTH_SHORT).show();
-        else{
-            text.add(s);
-            imgs.add(p);
-            alarm.add("");
-            json = gson.toJson(text);
-            editor.putString("note", json);
-            json = gson.toJson(imgs);
-            editor.putString("image", json);
-            json = gson.toJson(alarm);
-            editor.putString("alarm", json);
+        if(pos>-1){
+            EditText editText =findViewById(R.id.note);
+            text.set(pos,editText.getText().toString().trim());
+            imgs.set(pos,p);
+            editor.putString("note", gson.toJson(text));
+            editor.putString("image", gson.toJson(imgs));
             editor.apply();
             finish();
+        }
+        else {
+            String json = preferences.getString("note", null);
+            if (json == null)
+                text = new ArrayList<>();
+            else
+                text = gson.fromJson(json, type);
+
+            json = preferences.getString("image", null);
+            if (json == null)
+                imgs = new ArrayList<>();
+            else
+                imgs = gson.fromJson(json, type);
+
+            json = preferences.getString("alarm", null);
+            if (json == null)
+                alarm = new ArrayList<>();
+            else
+                alarm = gson.fromJson(json, type);
+
+
+            EditText editText = findViewById(R.id.note);
+            String s = editText.getText().toString().trim();
+            if (s.equals("") && p.equals(""))
+                Toast.makeText(this, "No text and Image", Toast.LENGTH_SHORT).show();
+            else {
+                text.add(s);
+                imgs.add(p);
+                alarm.add("");
+                json = gson.toJson(text);
+                editor.putString("note", json);
+                json = gson.toJson(imgs);
+                editor.putString("image", json);
+                json = gson.toJson(alarm);
+                editor.putString("alarm", json);
+                editor.apply();
+                finish();
+            }
         }
            //back to NoteList
     }
