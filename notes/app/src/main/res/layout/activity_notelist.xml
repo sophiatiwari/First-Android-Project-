@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NoteList"
-    android:background="#000">
+    android:background="#f8bbd0">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -13,11 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="112dp"
-        android:layout_marginEnd="47dp"
         android:clickable="true"
+        android:layout_margin="16dp"
         android:onClick="add"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:src="@drawable/add" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
