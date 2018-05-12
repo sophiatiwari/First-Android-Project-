@@ -1,5 +1,6 @@
 package com.example.sophie.notes;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +11,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder{
     TextView time;
     ImageView image;
     TextView note;
-    RelativeLayout layout;
+    CardView layout;
 
 
     public MyViewHolder(View itemView) {
