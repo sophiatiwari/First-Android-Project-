@@ -85,7 +85,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 });
             }
         });
-        holder.time.setText(mData.get(position).getText());
+        if(mData.get(position).getAlarm().length()>0)
+            holder.time.setVisibility(View.VISIBLE);
+        else
+            holder.time.setVisibility(View.GONE);
+        holder.time.setText(mData.get(position).getAlarm());
+
         String image = mData.get(position).getImgs();
         //Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
         if (image.equals("") || image.equals(null))
@@ -100,6 +105,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
                     .dontAnimate()  //specially for MI phones
                     .into(holder.image);
         }
+        if(mData.get(position).getText().length()>0)
+            holder.note.setVisibility(View.VISIBLE);
+        else
+            holder.note.setVisibility(View.GONE);
+
         holder.note.setText(mData.get(position).getText());
 
     }
