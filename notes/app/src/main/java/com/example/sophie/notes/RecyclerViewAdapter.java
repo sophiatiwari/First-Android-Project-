@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +16,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Arrays;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
@@ -42,6 +47,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+
+        SharedPreferences pref=mcontext.getSharedPreferences("Settings",MODE_PRIVATE);
+        int size = pref.getInt("size",0);
+        int style=pref.getInt("style",0);
+
+        //Bring xml array to java array
+        String[] sizep= mcontext.getResources().getStringArray(R.array.fontsize);
+
+        if(style==0)
+        holder.note.setTextAppearance(mcontext,R.style.cookie);
+        else  if (style==1)
+            holder.note.setTextAppearance(mcontext,R.style.courgette);
+        else if (style==2)
+            holder.note.setTextAppearance(mcontext,R.style.indie);
+
+        holder.note.setTextSize(Float.parseFloat(sizep[size]));
+
+
+
+
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

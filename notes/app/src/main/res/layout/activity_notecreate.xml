@@ -38,27 +38,70 @@
         app:pressedTranslationZ="12dp"
         android:layout_margin="8dp"/>
 
-</LinearLayout>></LinearLayout>
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="280dp"
-        android:src="@drawable/close"
-        android:id="@+id/addclose"
-        android:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        app:backgroundTint="@color/colorAccent"
-        android:visibility="invisible"
-        android:onClick="close"/>
+</LinearLayout>
 
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="270dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textStyle="italic|bold"
+            android:textSize="18sp"
+            android:layout_marginEnd="12dp"
+            android:visibility="invisible"
+            android:id="@+id/cnote"
+            android:layout_gravity="center_vertical"/>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/close"
+            android:id="@+id/addclose"
+            android:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            app:backgroundTint="@color/colorAccent"
+            android:visibility="invisible"
+            android:onClick="close"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="200dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image"
+        android:textStyle="italic|bold"
+        android:textSize="18sp"
+        android:layout_marginEnd="12dp"
+        android:visibility="invisible"
+        android:id="@+id/imgnote"
+        android:layout_gravity="center_vertical"/>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="210dp"
         android:src="@drawable/addimage"
         android:elevation="6dp"
         app:pressedTranslationZ="12dp"
@@ -66,13 +109,31 @@
         android:visibility="invisible"
         android:id="@+id/img"
         android:onClick="addimage"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="130dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:visibility="invisible"
+            android:textStyle="italic|bold"
+            android:textSize="18sp"
+            android:id="@+id/savenote"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="center_vertical"/>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="140dp"
         android:src="@drawable/savebutton"
         android:elevation="6dp"
         android:id="@+id/addsave"
@@ -80,13 +141,31 @@
         app:backgroundTint="@color/colorAccent"
         android:visibility="invisible"
         android:onClick="save"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="60dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reminder"
+        android:textStyle="italic|bold"
+        android:textSize="18sp"
+        android:layout_marginEnd="12dp"
+        android:id="@+id/alarmnote"
+        android:visibility="invisible"
+        android:layout_gravity="center_vertical"/>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="70dp"
         android:src="@drawable/addalarm"
         android:elevation="6dp"
         android:id="@+id/time"
@@ -94,4 +173,6 @@
         app:backgroundTint="@color/colorAccent"
         android:visibility="invisible"
         android:onClick="setalarm"/>
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>

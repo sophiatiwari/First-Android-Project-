@@ -34,10 +34,6 @@ import java.util.List;
 import java.util.Set;
 
 public class NoteList extends AppCompatActivity implements deletion{
-    ListView list;
-   //String [] titles;
-   //String [] description;
-   //int [] imgs={R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
    ArrayList<String> text;
     ArrayList<String> imgs;
     ArrayList<String> alarm;
@@ -48,6 +44,16 @@ public class NoteList extends AppCompatActivity implements deletion{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
+        int theme=pref.getInt("theme",0);
+        if(theme==0)
+            setTheme(R.style.PinkAppTheme);
+        else if(theme==1)
+            setTheme(R.style.RedAppTheme);
+        else if(theme==2)
+            setTheme(R.style.GreenAppTheme);
+        else if(theme==3)
+            setTheme(R.style.TealAppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notelist);
 
@@ -69,6 +75,7 @@ public class NoteList extends AppCompatActivity implements deletion{
             case R.id.settings:
                 Intent intent = new Intent(this,Settings.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.about:
                 Intent intent1 = new Intent(this,Info.class);
@@ -141,4 +148,5 @@ public class NoteList extends AppCompatActivity implements deletion{
         editor.apply();
         onResume();
     }
+
 }

@@ -1,11 +1,45 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="PinkAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#e91e63</item>
+        <item name="colorPrimaryDark">#c2185b</item>
+        <item name="colorAccent">#00bcd4</item>
     </style>
+
+    <style name="RedAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#f44336</item>
+        <item name="colorPrimaryDark">#d32f2f</item>
+        <item name="colorAccent">#7c4dff</item>
+    </style>
+
+    <style name="TealAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#00796b</item>
+        <item name="colorAccent">#ff5722</item>
+    </style>
+
+    <style name="GreenAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#4caf50</item>
+        <item name="colorPrimaryDark">#388e3c</item>
+        <item name="colorAccent">#ffc107</item>
+    </style>
+
+    <style name="cookie">
+        <item name="android:fontFamily">@font/cookie</item>
+    </style>
+
+    <style name="courgette">
+        <item name="android:fontFamily">@font/courgette</item>
+    </style>
+
+    <style name="indie">
+        <item name="android:fontFamily">@font/indie</item>
+    </style>
+
 
 </resources>

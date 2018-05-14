@@ -1,9 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settings">
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/theme"
+            android:drawableStart="@drawable/theme"
+            
+            android:text="App Theme"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:drawablePadding="3dp"/>
+        <Spinner
+            android:id="@+id/spin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Note Font Size"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/size"
+            android:drawableStart="@drawable/size"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:textSize="18dp" />
+        <Spinner
+            android:id="@+id/spin2"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_height="match_parent"/>
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/style"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/style"
+            android:drawablePadding="3dp"
+            android:layout_height="wrap_content"
+            android:text="Note Font Style"
+            android:textStyle="bold"
+            android:textSize="18dp" />
+
+        <Spinner
+            android:id="@+id/spin3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

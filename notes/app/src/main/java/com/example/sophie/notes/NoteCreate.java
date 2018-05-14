@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -30,6 +31,7 @@ public class NoteCreate extends AppCompatActivity {
 
     FloatingActionButton fab_plus,fab_image,fab_alarm,fab_close,fab_save;
     Animation open,close,clockwise,anticlockwise;
+    TextView textcancel,textsave,textimage,textalarm;
     boolean isopen=false;
 
     private static final int RC_PHOTO_PICKER = 1; //request code for photo
@@ -47,6 +49,16 @@ public class NoteCreate extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
+        int theme=pref.getInt("theme",0);
+        if(theme==0)
+            setTheme(R.style.PinkAppTheme);
+        else if(theme==1)
+            setTheme(R.style.RedAppTheme);
+        else if(theme==2)
+            setTheme(R.style.GreenAppTheme);
+        else if(theme==3)
+            setTheme(R.style.TealAppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notecreate);
         fab_plus=findViewById(R.id.fab);
@@ -54,6 +66,12 @@ public class NoteCreate extends AppCompatActivity {
         fab_alarm=findViewById(R.id.time);
         fab_close=findViewById(R.id.addclose);
         fab_save=findViewById(R.id.addsave);
+        textimage=findViewById(R.id.imgnote);
+        textcancel=findViewById(R.id.cnote);
+        textsave=findViewById(R.id.savenote);
+        textalarm=findViewById(R.id.alarmnote);
+
+
 
         open= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.open);
         close= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.close);
@@ -68,24 +86,38 @@ public class NoteCreate extends AppCompatActivity {
                     fab_image.startAnimation(close);
                     fab_save.startAnimation(close);
                     fab_close.startAnimation(close);//fab_plus.startAnimation(anticlockwise);
+                    textcancel.startAnimation(close);
+                    textsave.startAnimation(close);
+                    textimage.startAnimation(close);
+                    textalarm.startAnimation(close);
                     fab_plus.animate().rotation(0).start();
                     fab_image.setClickable(false);
                     fab_alarm.setClickable(false);
                     fab_save.setClickable(false);
                     fab_close.setClickable(false);
+                    textcancel.setClickable(false);
+                    textsave.setClickable(false);
+                    textimage.setClickable(false);
+                    textalarm.setClickable(false);
                     isopen=false;
 
                 } else {
                     fab_alarm.startAnimation(open);
                     fab_image.startAnimation(open);
                     fab_save.startAnimation(open);
-                    fab_close.startAnimation(open);
-                    //fab_plus.startAnimation(clockwise);
+                    fab_close.startAnimation(open);//fab_plus.startAnimation(clockwise);
+                    textcancel.startAnimation(open);
+                    textsave.startAnimation(open);
+                    textimage.startAnimation(open);
+                    textalarm.startAnimation(open);
                     fab_plus.animate().rotation(45).start();
                     fab_image.setClickable(true);
                     fab_alarm.setClickable(true);
                     fab_save.setClickable(true);
-                    fab_close.setClickable(true);
+                    textcancel.setClickable(true);
+                    textsave.setClickable(true);
+                    textimage.setClickable(true);
+                    textalarm.setClickable(true);
                     isopen=true;
 
                 }
