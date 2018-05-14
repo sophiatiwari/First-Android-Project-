@@ -3,9 +3,10 @@
 
     <string-array name="theme">
         <item>Pink</item>
-        <item>Red</item>
+        <item>Orange</item>
         <item>Green</item>
-        <item>Teal</item>
+        <item>Lime</item>
+        <item>Purple</item>
     </string-array>
 
     <string-array name="fontsize">
@@ -13,10 +14,8 @@
     <item>20</item>
     <item>22</item>
     <item>24</item>
-        <item>26</item>
-        <item>28</item>
-        <item>30</item>
-        <item>32</item>
+    <item>26</item>
+    <item>28</item>
     </string-array>
 
     <string-array name="fontstyle">

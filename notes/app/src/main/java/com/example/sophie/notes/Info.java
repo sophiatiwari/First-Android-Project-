@@ -13,11 +13,13 @@ public class Info extends AppCompatActivity {
         if(theme==0)
             setTheme(R.style.PinkAppTheme);
         else if(theme==1)
-            setTheme(R.style.RedAppTheme);
+            setTheme(R.style.OrangeAppTheme);
         else if(theme==2)
             setTheme(R.style.GreenAppTheme);
         else if(theme==3)
-            setTheme(R.style.TealAppTheme);
+            setTheme(R.style.LimeAppTheme);
+        else if(theme==4)
+            setTheme(R.style.PurpleAppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
     }
