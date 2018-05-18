@@ -22,7 +22,14 @@
         <activity android:name=".NoteCreate" />
         <activity android:name=".SetAlarm" />
         <activity android:name=".Settings" />
-        <activity android:name=".Info"></activity>
+        <activity android:name=".Info" />
+        <activity android:name=".RingingAlarm"
+            android:theme="@style/ringingalarm">
+
+        </activity>
+        <receiver android:name=".AlarmReciever">
+
+        </receiver>
     </application>
 
 </manifest>

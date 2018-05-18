@@ -38,6 +38,7 @@ public class NoteCreate extends AppCompatActivity {
     String p="";
     int pos=-1;
 
+    int zz;
 
 
     Gson gson = new Gson();
@@ -128,6 +129,7 @@ public class NoteCreate extends AppCompatActivity {
 
 
         pos=getIntent().getIntExtra("p",-1);
+        zz=pos;
         if(pos>-1){
             SharedPreferences preferences=getApplicationContext().getSharedPreferences("notes", MODE_PRIVATE);
             SharedPreferences.Editor editor=preferences.edit();
@@ -151,6 +153,12 @@ public class NoteCreate extends AppCompatActivity {
     }
 
     public void save(View view) {
+        update();
+        finish();
+           //back to NoteList
+    }
+
+    private void update() {
         SharedPreferences preferences=getApplicationContext().getSharedPreferences("notes", MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
 
@@ -160,8 +168,8 @@ public class NoteCreate extends AppCompatActivity {
             imgs.set(pos,p);
             editor.putString("note", gson.toJson(text));
             editor.putString("image", gson.toJson(imgs));
+            alarm = gson.fromJson(preferences.getString("alarm", null), type);
             editor.apply();
-            finish();
         }
         else {
             String json = preferences.getString("note", null);
@@ -191,6 +199,7 @@ public class NoteCreate extends AppCompatActivity {
                 text.add(s);
                 imgs.add(p);
                 alarm.add("");
+                zz=text.size()-1;
                 json = gson.toJson(text);
                 editor.putString("note", json);
                 json = gson.toJson(imgs);
@@ -198,16 +207,25 @@ public class NoteCreate extends AppCompatActivity {
                 json = gson.toJson(alarm);
                 editor.putString("alarm", json);
                 editor.apply();
-                finish();
             }
         }
-           //back to NoteList
     }
 
     public void setalarm(View view) {
-        Intent i = new Intent(getApplicationContext(), SetAlarm.class);
-        startActivity(i);
-        finish();
+        EditText editText = findViewById(R.id.editText);
+        String s = editText.getText().toString().trim();
+        if (s.equals("") && p.equals(""))
+            Toast.makeText(this, "No text and Image", Toast.LENGTH_SHORT).show();
+        else {
+            update();
+            Intent i = new Intent(getApplicationContext(), SetAlarm.class);
+            i.putExtra("note",text.get(zz));
+            i.putExtra("img",imgs.get(zz));
+            i.putExtra("alarm",alarm.get(zz));
+            i.putExtra("position", zz);
+            startActivity(i);
+            finish();
+        }
     }
 
     public void addimage(View view) {
@@ -222,10 +240,11 @@ public class NoteCreate extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ImageView imageView = findViewById(R.id.pic);
-        Uri i=data.getData();
-        p=i.toString();
+
         if(requestCode==RC_PHOTO_PICKER && resultCode==RESULT_OK)
         {
+            Uri i=data.getData();
+            p=i.toString();
             Glide.with(NoteCreate.this)
                     .load(p)
                     .placeholder(R.drawable.ic_launcher_background)

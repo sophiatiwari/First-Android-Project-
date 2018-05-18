@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">notes</string>
+    <string name="app_name">NotePins</string>
 
     <string-array name="theme">
         <item>Pink</item>
@@ -10,17 +10,19 @@
     </string-array>
 
     <string-array name="fontsize">
-    <item>18</item>
-    <item>20</item>
-    <item>22</item>
-    <item>24</item>
-    <item>26</item>
-    <item>28</item>
+        <item>18</item>
+        <item>20</item>
+        <item>22</item>
+        <item>24</item>
+        <item>26</item>
+        <item>28</item>
     </string-array>
 
     <string-array name="fontstyle">
         <item>Cookie</item>
-        <item>Courgette</item>
+        <item>Courge</item>
         <item>Indie</item>
+        <item>Raves</item>
+        <item>Cinzel</item>
     </string-array>
 </resources>

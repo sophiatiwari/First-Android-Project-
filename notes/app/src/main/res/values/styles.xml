@@ -40,12 +40,26 @@
         <item name="android:fontFamily">@font/cookie</item>
     </style>
 
-    <style name="courgette">
-        <item name="android:fontFamily">@font/courgette</item>
+    <style name="courge">
+        <item name="android:fontFamily">@font/courge</item>
     </style>
 
     <style name="indie">
         <item name="android:fontFamily">@font/indie</item>
+    </style>
+
+    <style name="raves">
+        <item name="android:fontFamily">@font/raves</item>
+    </style>
+
+    <style name="cinzel">
+        <item name="android:fontFamily">@font/cinzel</item>
+    </style>
+
+    <style name="ringingalarm" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 

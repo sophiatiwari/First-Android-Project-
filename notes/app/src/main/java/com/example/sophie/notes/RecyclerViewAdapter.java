@@ -16,7 +16,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -58,9 +61,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
         if(style==0)
         holder.note.setTextAppearance(mcontext,R.style.cookie);
         else  if (style==1)
-            holder.note.setTextAppearance(mcontext,R.style.courgette);
+            holder.note.setTextAppearance(mcontext,R.style.courge);
         else if (style==2)
             holder.note.setTextAppearance(mcontext,R.style.indie);
+        else if(style==3)
+            holder.note.setTextAppearance(mcontext,R.style.raves);
+        else if(style==4)
+            holder.note.setTextAppearance(mcontext,R.style.cinzel);
+
 
         holder.note.setTextSize(Float.parseFloat(sizep[size]));
 
@@ -109,13 +117,33 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
                     }
                 });
+                dialog.findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(mcontext,SetAlarm.class);
+                        intent.putExtra("position",position);
+                        intent.putExtra("note",mData.get(position).getText());
+                        intent.putExtra("img",mData.get(position).getImgs());
+                        intent.putExtra("alarm",mData.get(position).getAlarm());
+                        mcontext.startActivity(intent);
+                    }
+                });
             }
         });
-        if(mData.get(position).getAlarm().length()>0)
+        if(mData.get(position).getAlarm().length()>0) {
             holder.time.setVisibility(View.VISIBLE);
+            long ts=Long.parseLong(mData.get(position).getAlarm());
+            String d= new SimpleDateFormat("hh:mm a, dd MMM yyyy").format(new Date(ts));
+
+            holder.time.setText(d);
+        }
         else
             holder.time.setVisibility(View.GONE);
-        holder.time.setText(mData.get(position).getAlarm());
+
+
+
+        Toast.makeText(mcontext, ""+mData.get(position).getAlarm(), Toast.LENGTH_SHORT).show();
 
         String image = mData.get(position).getImgs();
         //Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
