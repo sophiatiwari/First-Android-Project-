@@ -1,5 +1,7 @@
 package com.example.sophie.notes;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -139,6 +141,11 @@ public class NoteList extends AppCompatActivity implements deletion{
 
     @Override
     public void delete(int p) {
+        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(this,AlarmReciever.class);
+        PendingIntent pendingIntent= PendingIntent.getBroadcast(this,p,intent,PendingIntent.FLAG_ONE_SHOT);
+        pendingIntent.cancel();
+        alarmManager.cancel(pendingIntent);
         text.remove(p);
         imgs.remove(p);
         alarm.remove(p);
