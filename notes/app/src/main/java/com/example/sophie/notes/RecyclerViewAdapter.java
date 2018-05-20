@@ -143,7 +143,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
 
 
-        Toast.makeText(mcontext, ""+mData.get(position).getAlarm(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mcontext, ""+mData.get(position).getAlarm(), Toast.LENGTH_SHORT).show();
 
         String image = mData.get(position).getImgs();
         //Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();

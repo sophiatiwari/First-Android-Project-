@@ -3,6 +3,7 @@ package com.example.sophie.notes;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +13,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.wooplr.spotlight.SpotlightView;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -32,6 +35,7 @@ public class NoteCreate extends AppCompatActivity {
     FloatingActionButton fab_plus,fab_image,fab_alarm,fab_close,fab_save;
     Animation open,close,clockwise,anticlockwise;
     TextView textcancel,textsave,textimage,textalarm;
+    LinearLayout l;
     boolean isopen=false;
 
     private static final int RC_PHOTO_PICKER = 1; //request code for photo
@@ -53,17 +57,46 @@ public class NoteCreate extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
         int theme=pref.getInt("theme",0);
         if(theme==0)
-            setTheme(R.style.PinkAppTheme);
+            setTheme(R.style.YellowAppTheme);
         else if(theme==1)
-            setTheme(R.style.OrangeAppTheme);
+            setTheme(R.style.GreyAppTheme);
         else if(theme==2)
-            setTheme(R.style.GreenAppTheme);
+            setTheme(R.style.TileAppTheme);
         else if(theme==3)
-            setTheme(R.style.LimeAppTheme);
+            setTheme(R.style.GreenAppTheme);
         else if(theme==4)
-            setTheme(R.style.PurpleAppTheme);
+            setTheme(R.style.IndigoAppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notecreate);
+        l = findViewById(R.id.fabutton);
+        l.post(new Runnable() {
+            @Override
+            public void run() {
+                new SpotlightView.Builder(NoteCreate.this)
+                        .introAnimationDuration(400)
+                        .enableRevealAnimation(true)
+                        .performClick(true)
+                        .fadeinTextDuration(400)
+                        .headingTvColor(Color.parseColor("#00bcd4"))
+                        .headingTvSize(32)
+                        .headingTvText("Your Note")
+                        .subHeadingTvColor(Color.parseColor("#e91e63"))
+                        .subHeadingTvSize(16)
+                        .subHeadingTvText("Type in your note and tap for more")
+                        .maskColor(Color.parseColor("#dc000000"))
+                        .target(l)
+                        .lineAnimDuration(400)
+                        .lineAndArcColor(Color.parseColor("#eb273f"))
+                        .dismissOnTouch(true)
+                        .dismissOnBackPress(true)
+                        .enableDismissAfterShown(true)
+                        .usageId("2") //UNIQUE ID
+                        .show();
+
+
+            }
+        });
+
         fab_plus=findViewById(R.id.fab);
         fab_image=findViewById(R.id.img);
         fab_alarm=findViewById(R.id.time);

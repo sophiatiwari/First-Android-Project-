@@ -19,15 +19,15 @@ public class Settings extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
         int theme=pref.getInt("theme",0);
         if(theme==0)
-            setTheme(R.style.PinkAppTheme);
+            setTheme(R.style.YellowAppTheme);
         else if(theme==1)
-            setTheme(R.style.OrangeAppTheme);
+            setTheme(R.style.GreyAppTheme);
         else if(theme==2)
-            setTheme(R.style.GreenAppTheme);
+            setTheme(R.style.TileAppTheme);
         else if(theme==3)
-            setTheme(R.style.LimeAppTheme);
+            setTheme(R.style.GreenAppTheme);
         else if(theme==4)
-            setTheme(R.style.PurpleAppTheme);
+            setTheme(R.style.IndigoAppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 

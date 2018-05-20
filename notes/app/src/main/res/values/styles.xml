@@ -1,39 +1,39 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="PinkAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="YellowAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#e91e63</item>
-        <item name="colorPrimaryDark">#c2185b</item>
-        <item name="colorAccent">#00bcd4</item>
+        <item name="colorPrimary">#ffc107</item>
+        <item name="colorPrimaryDark">#ffa000</item>
+        <item name="colorAccent">#ff0000</item>
     </style>
 
-    <style name="OrangeAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="GreyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#ff5722</item>
-        <item name="colorPrimaryDark">#e64a19</item>
-        <item name="colorAccent">#009688</item>
+        <item name="colorPrimary">#607d8b</item>
+        <item name="colorPrimaryDark">#455a64</item>
+        <item name="colorAccent">#9e9e9e</item>
+    </style>
+
+    <style name="TileAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#00796b</item>
+        <item name="colorAccent">#9e9e9e</item>
     </style>
 
     <style name="GreenAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#4caf50</item>
         <item name="colorPrimaryDark">#388e3c</item>
-        <item name="colorAccent">#795548</item>
+        <item name="colorAccent">#8bc34a</item>
     </style>
 
-    <style name="LimeAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="IndigoAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#cddc39</item>
-        <item name="colorPrimaryDark">#afb42b</item>
-        <item name="colorAccent">#9e9e9e</item>
-    </style>
-
-    <style name="PurpleAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">#9c27b0</item>
-        <item name="colorPrimaryDark">#7b1fa2</item>
-        <item name="colorAccent">#ff4081</item>
+        <item name="colorPrimary">#3f51b5</item>
+        <item name="colorPrimaryDark">#303f9f</item>
+        <item name="colorAccent">#00bcd4</item>
     </style>
 
     <style name="cookie">

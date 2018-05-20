@@ -5,8 +5,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.wooplr.spotlight.SpotlightView;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -43,23 +46,52 @@ public class NoteList extends AppCompatActivity implements deletion{
     Gson gson = new Gson();
     Type type = new TypeToken<ArrayList<String>>() {}.getType();
 
+    FloatingActionButton flt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
         int theme=pref.getInt("theme",0);
         if(theme==0)
-            setTheme(R.style.PinkAppTheme);
+            setTheme(R.style.YellowAppTheme);
         else if(theme==1)
-            setTheme(R.style.OrangeAppTheme);
+            setTheme(R.style.GreyAppTheme);
         else if(theme==2)
-            setTheme(R.style.GreenAppTheme);
+            setTheme(R.style.TileAppTheme);
         else if(theme==3)
-            setTheme(R.style.LimeAppTheme);
+            setTheme(R.style.GreenAppTheme);
         else if(theme==4)
-            setTheme(R.style.PurpleAppTheme);
+            setTheme(R.style.IndigoAppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notelist);
+        flt = findViewById(R.id.floatingActionButton);
+        flt.post(new Runnable() {
+                     @Override
+                     public void run() {
+                         new SpotlightView.Builder(NoteList.this)
+                                 .introAnimationDuration(400)
+                                 .enableRevealAnimation(true)
+                                 .performClick(true)
+                                 .fadeinTextDuration(400)
+                                 .headingTvColor(Color.parseColor("#00bcd4"))
+                                 .headingTvSize(32)
+                                 .headingTvText("Create Note")
+                                 .subHeadingTvColor(Color.parseColor("#e91e63"))
+                                 .subHeadingTvSize(16)
+                                 .subHeadingTvText("Tap here to get started")
+                                 .maskColor(Color.parseColor("#dc000000"))
+                                 .target(flt)
+                                 .lineAnimDuration(400)
+                                 .lineAndArcColor(Color.parseColor("#eb273f"))
+                                 .dismissOnTouch(true)
+                                 .dismissOnBackPress(true)
+                                 .enableDismissAfterShown(true)
+                                 .usageId("1") //UNIQUE ID
+                                 .show();
+
+                     }
+                 });
 
         //getSupportActionBar().setTitle("Your Notes");
         ActionBar actionBar = getSupportActionBar();
